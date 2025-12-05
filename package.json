@@ -1,0 +1,17 @@
+{
+  "name": "serverest-manoel",
+  "version": "1.0.0",
+  "scripts": {
+    "test": "cypress run --browser chrome"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "Automated testing studies using serverest.dev",
+  "author": "Manoel Jansen",
+  "devDependencies": {
+    "@faker-js/faker": "^9.9.0",
+    "cypress": "^15.7.1",
+    "cypress-mochawesome-reporter": "^4.0.2"
+  }
+}

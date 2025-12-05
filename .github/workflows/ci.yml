@@ -1,0 +1,41 @@
+
+name: ServeRest Tests Cypress
+
+on:
+  workflow_dispatch:
+  
+  push:
+   branches:
+      - main
+  
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  
+  run-and-publish:
+    runs-on: ubuntu-latest
+    
+    permissions:
+      contents: write
+
+    steps:
+
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Run Cypress E2E Tests
+        uses: cypress-io/github-action@v6
+        with:
+          command: npm test 
+        continue-on-error: true 
+
+      - name: Deploy Mochawesome Report to GitHub Pages
+
+        if: always() 
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./cypress/reports/mochawesome
+          commit_message: 'Deploy Mochawesome report [skip ci]'
